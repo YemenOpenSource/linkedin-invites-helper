@@ -1,0 +1,162 @@
+:root {
+  --lih-acc-grad: linear-gradient(135deg, #2dd4bf, #0ea5e9, #6366f1);
+  --lih-ign-grad: linear-gradient(135deg, #f97316, #ef4444, #f43f5e);
+}
+
+/* Inline panel (inserted inside the page, near the invitations header) */
+#lih-panel {
+  display: flex;
+  gap: 14px; /* was 18px */
+  align-items: center;
+  z-index: 2147483647;
+  justify-content: flex-end;
+  padding: 14px;
+}
+
+/* If for any reason we can't anchor, we simply don't show the panel. */
+#lih-panel.lih-hidden {
+  display: none !important;
+}
+
+/* Fancy pill buttons */
+.lih-btn {
+  position: relative;
+  border: none;
+  border-radius: 14px; /* was 18px */
+  cursor: pointer;
+  padding: 10px;
+  font: 700 15px/1.25 system-ui, -apple-system, Segoe UI, Roboto, Arial; /* was 800 18px/1.1 */
+  font-size: 14px;
+  color: #fff;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16), 0 6px 18px rgba(0, 0, 0, 0.1); /* slightly lighter */
+  overflow: hidden;
+  transition: transform 0.08s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.lih-btn:hover {
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.22), 0 8px 22px rgba(0, 0, 0, 0.14);
+  filter: saturate(1.06);
+}
+.lih-btn:active {
+  transform: translateY(1px);
+}
+
+.lih-accept {
+  background-image: var(--lih-acc-grad);
+  background-size: 200% 200%;
+  animation: acc-move 7s ease infinite;
+}
+.lih-ignore {
+  background-image: var(--lih-ign-grad);
+  background-size: 200% 200%;
+  animation: ign-move 7s ease infinite;
+}
+
+@keyframes acc-move {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+@keyframes ign-move {
+  0%,
+  100% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+}
+
+.lih-btn .label {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+} /* was gap:10px */
+
+.lih-icon {
+  width: 18px; /* was 20px */
+  height: 18px; /* was 20px */
+  display: inline-block;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #111;
+  font-size: 14px; /* was 16px */
+  text-align: center;
+  line-height: 18px; /* was 20px */
+  font-weight: 900;
+}
+
+.lih-btn .count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 8px; /* was 6px 10px */
+  border-radius: 999px;
+  font-weight: 700; /* was 800 */
+  font-size: 13px; /* was 14px */
+}
+
+.lih-btn .spinner {
+  width: 14px; /* was 16px */
+  height: 14px; /* was 16px */
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  display: none;
+}
+
+.lih-btn::after {
+  content: "";
+  position: absolute;
+  width: 12px; /* was 14px */
+  height: 12px; /* was 14px */
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(0);
+  opacity: 0;
+}
+.lih-btn.ripple::after {
+  animation: lih-ripple 0.5s ease;
+}
+@keyframes lih-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(26);
+    opacity: 0;
+  }
+} /* slightly smaller end scale */
+
+.lih-btn.running {
+  cursor: progress;
+}
+.lih-btn.running .spinner {
+  display: inline-block;
+}
+
+/* Toast (bottom-right, temporary) */
+.lih-toast {
+  position: fixed;
+  inset-inline-end: 22px; /* was 24px */
+  inset-block-end: 22px; /* was 24px */
+  background: #111;
+  color: #fff;
+  padding: 10px 12px; /* was 12px 14px */
+  border-radius: 10px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25); /* slightly lighter */
+  z-index: 2147483647;
+  font: 600 13px/1.35 system-ui, -apple-system, Segoe UI, Roboto, Arial; /* slightly taller line-height */
+  opacity: 0.98;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lih-accept,
+  .lih-ignore {
+    animation: none !important;
+  }
+}
