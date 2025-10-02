@@ -11,7 +11,7 @@ Buttons appear inline on:
 - 🛡️ No tracking. No data leaves your browser.
 
 ## Install (Chrome)
-1. Download from the Chrome Web Store (link here once published).
+1. Download from the Chrome Web Store [(here)](https://chromewebstore.google.com/detail/linkedin-invites-helper/cjneddligponadljogckephlkflelogn?utm_source=item-share-cb).
 2. Open the two LinkedIn pages above and you’ll see inline controls.
 
 ## Permissions
